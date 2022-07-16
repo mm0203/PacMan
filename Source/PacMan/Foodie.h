@@ -6,16 +6,19 @@
 #include "GameFramework/Actor.h"
 #include "Foodie.generated.h"
 
+// 前方宣言
 class USoundCue;
 
+// 餌の種類
 UENUM(BlueprintType)
-enum class EFoodieType : uint8 {
-
-	Regular,
-	PowerUp
-
+enum class EFoodieType : uint8
+{
+	Regular,	// 通常
+	PowerUp		// パワーアップ
 };
 
+// なんかデリゲートするっぽい　よくわからん
+// ノード終了時に呼ぶデリゲートらしい？
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FFoodieEatenEvent, EFoodieType, FoodieType);
 
 UCLASS()
@@ -24,11 +27,9 @@ class PACMAN_API AFoodie : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AFoodie();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	

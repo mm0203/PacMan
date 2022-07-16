@@ -1,16 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "PacmanController.h"
-
 #include "PacmanPawn.h"
 
-
 // プレイヤーのポーンを取得
-APacmanPawn * APacmanController::GetPacmanPawn() const
+APacmanPawn* APacmanController::GetPacmanPawn() const
 {
-	// キャスト
-	// BPでいうCast to ~~ ？
+	// APawn* aa = GetPawn();
 	return Cast<APacmanPawn>(GetPawn());
 }
 
@@ -32,6 +28,7 @@ void APacmanController::MoveUp()
 {
 	if (GetPacmanPawn() != nullptr) 
 	{
+		//PacmanPawner->SetDirection(FVector::UpVector);
 		GetPacmanPawn()->SetDirection(FVector::UpVector);
 	}
 }

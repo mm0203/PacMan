@@ -2,18 +2,13 @@
 
 
 #include "PacmanPawn.h"
-
 #include "Foodie.h"
 
-// Sets default values
 APacmanPawn::APacmanPawn()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
 void APacmanPawn::BeginPlay()
 {
 	Super::BeginPlay();
@@ -22,7 +17,6 @@ void APacmanPawn::BeginPlay()
 	
 }
 
-// Called every frame
 void APacmanPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

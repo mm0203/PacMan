@@ -12,15 +12,12 @@ class PACMAN_API APacmanPawn : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
 	APacmanPawn();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// ‘€ì‚Ì“ü—Íİ’è
@@ -29,6 +26,7 @@ public:
 
 protected:
 
+	// “®‚¯‚é‚©‚Ç‚¤‚©
 	UPROPERTY(BlueprintReadOnly)
 	bool Frozen = true;
 
