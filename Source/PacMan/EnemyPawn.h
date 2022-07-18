@@ -6,14 +6,14 @@
 #include "GameFramework/Pawn.h"
 #include "EnemyPawn.generated.h"
 
+// 敵の状態
 UENUM(BlueprintType)
-enum class EEnemyState : uint8 {
-
-	Default,
-	Idle
-
+enum class EEnemyState : uint8
+{
+	Default, // なし
+	Idle	 // 待機
 };
-
+// 動的マルチキャストデリゲート(イベントディスパッチャー)宣言 (型,引数名)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyStateChangedEvent, EEnemyState, NewState);
 
 UCLASS()
@@ -22,8 +22,6 @@ class PACMAN_API AEnemyPawn : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		EEnemyState State = EEnemyState::Default;
 

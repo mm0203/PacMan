@@ -17,8 +17,7 @@ enum class EFoodieType : uint8
 	PowerUp		// パワーアップ
 };
 
-// なんかデリゲートするっぽい　よくわからん
-// ノード終了時に呼ぶデリゲートらしい？
+// 動的マルチキャストデリゲート(イベントディスパッチャー)宣言 (型,引数名)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FFoodieEatenEvent, EFoodieType, FoodieType);
 
 UCLASS()
@@ -33,21 +32,22 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// 餌の獲得
 	void Consume();
 
+	// 餌のタイプ
 	UPROPERTY(EditAnywhere)
 		EFoodieType FoodieType = EFoodieType::Regular;
 
+	// 動的マルチキャストデリゲート(イベントディスパッチャー)の定義
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 		FFoodieEatenEvent FoodieEatenEvent;
 
 private:
 
+	// 餌取得時の音
 	UPROPERTY(EditAnywhere)
 		USoundCue* ConsumptionSound;
-
-
 };

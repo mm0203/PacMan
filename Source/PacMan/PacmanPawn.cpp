@@ -13,8 +13,8 @@ void APacmanPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// 当たり判定の宣言的なやつかも
 	OnActorBeginOverlap.AddDynamic(this, &APacmanPawn::OnOverlapBegin);
-	
 }
 
 void APacmanPawn::Tick(float DeltaTime)
@@ -56,23 +56,18 @@ void APacmanPawn::SetDirection(const FVector Direction)
 	}
 }
 
+// プレイヤーと別アクターの当たり判定
 void APacmanPawn::OnOverlapBegin(AActor * PlayerActor, AActor * OtherActor)
 {
-
+	// 通常の餌
 	if (OtherActor->ActorHasTag("Foodie.Regular")) 
 	{
-	
 		Cast<AFoodie>(OtherActor)->Consume();
-
 	}
-
+	// パワーアップ
 	if (OtherActor->ActorHasTag("Foodie.PowerUp"))
 	{
-
 		Cast<AFoodie>(OtherActor)->Consume();
-
 	}
-
-
 }
 
