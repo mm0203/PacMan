@@ -18,6 +18,6 @@ void AEnemyPawn::Idle()
 	// 待機
 	State = EEnemyState::Idle;
 
-	// イベントディスパッチャーの呼び出し
+	// イベントディスパッチャーの呼び出し：
 	StateChangedEvent.Broadcast(State);
 }
