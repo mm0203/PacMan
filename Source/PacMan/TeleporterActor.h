@@ -14,15 +14,12 @@ class PACMAN_API ATeleporterActor : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ATeleporterActor();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void TeleportToTarget(AActor* Actor);
@@ -30,9 +27,11 @@ public:
 	UPROPERTY(EditAnywhere)
 		ATeleporterActor* Target = nullptr;
 
+	// テレポート時の音
 	UPROPERTY(EditAnywhere)
 		USoundCue* TeleportSound;
 
+	// 当たり判定
 	UFUNCTION()
 		void OnOverlapBegin(AActor* TeleporterActor, AActor* OtherActor);
 
