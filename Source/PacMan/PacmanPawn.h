@@ -27,10 +27,6 @@ class PACMAN_API APacmanPawn : public APawn
 public:
 	APacmanPawn();
 
-	// “G‚Ìó‘Ô
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		EPacManState State = EPacManState::Regular;
-
 protected:
 	virtual void BeginPlay() override;
 
@@ -52,6 +48,11 @@ protected:
 		bool PowerUp = false;
 
 public:
+
+	// “G‚Ìó‘Ô
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EPacManState State = EPacManState::Regular;
+
 
 	// ˆÚ“®•ûŒü‚ğƒZƒbƒg
 	void SetDirection(const FVector Direction);

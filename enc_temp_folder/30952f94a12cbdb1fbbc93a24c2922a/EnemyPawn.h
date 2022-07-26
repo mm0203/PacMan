@@ -33,9 +33,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		EEnemyState State = EEnemyState::Hunt;
 
-	// 状態変化(イベントディスパッチャー)
-	EEnemyState& GetState() { return State; }
-
 	// 探索
 	UFUNCTION(BlueprintCallable)
 		void Hunt();

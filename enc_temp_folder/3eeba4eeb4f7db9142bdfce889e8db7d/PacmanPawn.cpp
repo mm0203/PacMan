@@ -3,8 +3,6 @@
 
 #include "PacmanPawn.h"
 #include "Foodie.h"
-#include "EnemyPawn.h"
-#include "Engine.h" //GEngine
 
 APacmanPawn::APacmanPawn()
 {
@@ -72,12 +70,6 @@ void APacmanPawn::OnOverlapBegin(AActor * PlayerActor, AActor * OtherActor)
 		Cast<AFoodie>(OtherActor)->Consume();
 
 		State = EPacManState::PowerUp;
-
-		//for (TActorIterator<AEnemyPawn>ActItr(GEngine->GameViewport->GetWorld()); ActItr; ++ActItr)
-		//{
-		//	AEnemyPawn* Call = *ActItr;
-		//	Call->OnStateChanged().Broadcast(Call->GetState());
-		//}
 	}
 }
 
