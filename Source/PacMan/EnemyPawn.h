@@ -36,19 +36,28 @@ public:
 	// 状態変化(イベントディスパッチャー)
 	EEnemyState& GetState() { return State; }
 
-	// 探索
-	UFUNCTION(BlueprintCallable)
-		void Hunt();
 	// 待機
 	UFUNCTION(BlueprintCallable)
 		void Idle();
+	// 探索
+	UFUNCTION(BlueprintCallable)
+		void Hunt();
 	// 逃げる
 	UFUNCTION(BlueprintCallable)
 		void RunAway();
+	// 待機→探索
+	UFUNCTION(BlueprintCallable)
+		void StartMoving();
+
+	UFUNCTION(BlueprintCallable)
+		void OnMoving();
 
 	// 状態変化(イベントディスパッチャー)
 	FEnemyStateChangedEvent& OnStateChanged() { return StateChangedEvent; }
 
+protected:
+	UPROPERTY()
+		UWorld* World;
 private:
 
 	// 状態変化時のイベントディスパッチャー

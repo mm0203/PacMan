@@ -2,8 +2,7 @@
 
 
 #include "EnemyPawn.h"
-
-#include "PacmanPawn.h"
+#include "Kismet/KismetSystemLibrary.h" //追加
 
 AEnemyPawn::AEnemyPawn()
 {
@@ -14,51 +13,61 @@ void AEnemyPawn::Tick(float DeltaTime)
 {
 }
 
-
-void AEnemyPawn::Hunt()
-{
-	// 探索
-	State = EEnemyState::Hunt;
-
-	// イベントディスパッチャーの呼び出し
-	StateChangedEvent.Broadcast(State);
-}
-
+// 待機
 void AEnemyPawn::Idle()
 {
-	// 待機
 	State = EEnemyState::Idle;
-
-	// イベントディスパッチャーの呼び出し
 	StateChangedEvent.Broadcast(State);
 }
 
+// 探索
+void AEnemyPawn::Hunt()
+{
+	State = EEnemyState::Hunt;
+	StateChangedEvent.Broadcast(State);
+}
+
+// 逃げる
 void AEnemyPawn::RunAway()
 {
-	// 逃げる
 	State = EEnemyState::RunAway;
-
-	// イベントディスパッチャーの呼び出し
 	StateChangedEvent.Broadcast(State);
 }
+
+// 待機→探索
+void AEnemyPawn::StartMoving()
+{
+	// 待機のディスパッチャーを呼ぶ
+	Idle();
+
+	// セットタイマー　1.5秒後に探索
+	World = GEngine->GameViewport->GetWorld();
+	FTimerHandle _TimerHandle;
+	World->GetTimerManager().SetTimer(_TimerHandle, this, &AEnemyPawn::Hunt, 1.0f, false,1.5f);
+}
+
+void AEnemyPawn::OnMoving()
+{
+	GetController();
+
+	switch (State)
+	{
+	case EEnemyState::Idle:
+		
+		break;
+	case EEnemyState::Hunt:
+
+		break;
+	case EEnemyState::RunAway:
+
+		break;
+
+	}
+}
+
 
 // プレイヤーと別アクターの当たり判定
 void AEnemyPawn::OnComponentHit(AActor* PlayerActor, AActor* OtherActor)
 {
-	//// 通常の餌
-	//if (OtherActor->ActorHasTag("Pacman"))
-	//{
-	//	if(Cast<APacmanPawn>(OtherActor)->IsPowerUp())
-	//	{
-	//		FVector location = FVector(0, 150, 50);
 
-	//		SetActorLocation(location);
-	//	}
-	//	else
-	//	{
-	//		FVector location = FVector(10000, 10050, 50);
-
-	//		Cast<APacmanPawn>(OtherActor)->SetActorLocation(location);
-	//	}
-	//}
 }

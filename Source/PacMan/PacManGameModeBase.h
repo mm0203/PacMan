@@ -10,8 +10,15 @@
  * 
  */
 UCLASS()
+
 class PACMAN_API APacManGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	APacManGameModeBase();
+
+	UFUNCTION(BlueprintCallable)
+		void GetFoodieCount();
 };

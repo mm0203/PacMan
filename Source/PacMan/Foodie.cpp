@@ -9,12 +9,14 @@
 AFoodie::AFoodie()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+
 }
 
 void AFoodie::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void AFoodie::Tick(float DeltaTime)
@@ -33,6 +35,5 @@ void AFoodie::Consume()
 
 	// âaÇÃçÌèú
 	Destroy();
-
 }
 

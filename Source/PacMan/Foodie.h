@@ -50,4 +50,5 @@ private:
 	// ‰aŽæ“¾Žž‚Ì‰¹
 	UPROPERTY(EditAnywhere)
 		USoundCue* ConsumptionSound;
+
 };

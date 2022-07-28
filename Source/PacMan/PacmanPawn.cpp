@@ -6,6 +6,7 @@
 #include "EnemyPawn.h"
 #include "Engine.h" //GEngine
 
+
 APacmanPawn::APacmanPawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -78,6 +79,12 @@ void APacmanPawn::OnOverlapBegin(AActor * PlayerActor, AActor * OtherActor)
 		//	AEnemyPawn* Call = *ActItr;
 		//	Call->OnStateChanged().Broadcast(Call->GetState());
 		//}
+	}
+
+	// ’Êí‚Ì‰a
+	if (OtherActor->ActorHasTag("Enemy"))
+	{
+		UKismetSystemLibrary::PrintString(this, "C++ Hello World!", true, true, FColor::Cyan, 2.f);
 	}
 }
 
