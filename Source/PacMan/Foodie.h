@@ -45,8 +45,10 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 		FFoodieEatenEvent FoodieEatenEvent;
 
-private:
+	// 状態変化(イベントディスパッチャー)
+	FFoodieEatenEvent& OnFoodieEatenEvent() { return FoodieEatenEvent; }
 
+private:
 	// 餌取得時の音
 	UPROPERTY(EditAnywhere)
 		USoundCue* ConsumptionSound;

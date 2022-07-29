@@ -19,6 +19,7 @@ public:
 
 	APacManGameModeBase();
 
-	UFUNCTION(BlueprintCallable)
-		void GetFoodieCount();
+	static int& GetAbc() { return abc; }
+
+	static int abc;
 };

@@ -42,7 +42,13 @@ void AFoodie::Consume()
 
 	FoodieCnt--;
 
-	FString cnt = UKismetStringLibrary::Conv_IntToString(FoodieCnt);
-	UKismetSystemLibrary::PrintString(this, cnt);
+	FString aa = UKismetStringLibrary::Conv_IntToString(FoodieCnt);
+	UKismetSystemLibrary::PrintString(
+		this,
+		aa,
+		true,
+		true,
+		FColor::Cyan,
+		2.0f);
 }
 

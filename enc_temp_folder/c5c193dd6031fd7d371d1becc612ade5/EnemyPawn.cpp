@@ -2,7 +2,7 @@
 
 
 #include "EnemyPawn.h"
-#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/KismetSystemLibrary.h" //追加
 
 AEnemyPawn::AEnemyPawn()
 {
@@ -41,8 +41,9 @@ void AEnemyPawn::StartMoving()
 	Idle();
 
 	// セットタイマー　1.5秒後に探索
+	World = GEngine->GameViewport->GetWorld();
 	FTimerHandle _TimerHandle;
-	GetWorld()->GetTimerManager().SetTimer(_TimerHandle, this, &AEnemyPawn::Hunt, 1.0f, false,1.5f);
+	World->GetTimerManager().SetTimer(_TimerHandle, this, &AEnemyPawn::Hunt, 1.0f, false,1.5f);
 }
 
 void AEnemyPawn::OnMoving()
@@ -61,6 +62,7 @@ void AEnemyPawn::OnMoving()
 
 	}
 }
+
 
 // プレイヤーと別アクターの当たり判定
 void AEnemyPawn::OnComponentHit(AActor* PlayerActor, AActor* OtherActor)
