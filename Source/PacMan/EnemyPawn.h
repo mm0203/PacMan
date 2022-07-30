@@ -4,14 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "AIController.h"
 #include "EnemyPawn.generated.h"
+
 
 // 敵の状態
 UENUM(BlueprintType)
 enum class EEnemyState : uint8
 {
-	Hunt,	 // 探索
 	Idle,	 // 待機
+	Hunt,	 // 探索
 	RunAway	 // 逃げる
 };
 
@@ -50,7 +53,7 @@ public:
 		void StartMoving();
 
 	UFUNCTION(BlueprintCallable)
-		void OnMoving();
+		void UpdateMovement();
 
 	// 状態変化(イベントディスパッチャー)
 	FEnemyStateChangedEvent& OnStateChanged() { return StateChangedEvent; }

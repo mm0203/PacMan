@@ -2,7 +2,9 @@
 
 
 #include "EnemyPawn.h"
+#include "PacmanPawn.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 AEnemyPawn::AEnemyPawn()
 {
@@ -45,18 +47,28 @@ void AEnemyPawn::StartMoving()
 	GetWorld()->GetTimerManager().SetTimer(_TimerHandle, this, &AEnemyPawn::Hunt, 1.0f, false,1.5f);
 }
 
-void AEnemyPawn::OnMoving()
+// 状態によって行動変化
+void AEnemyPawn::UpdateMovement()
 {
+	// 敵のコントローラ取得
+	AController* MyController = GetController();
+	// AI取得
+	AAIController* MyAIController = UAIBlueprintHelperLibrary::GetAIController(MyController);
+	// プレイヤーポーン取得
+	APacmanPawn* MyCharacter = Cast<APacmanPawn>(UGameplayStatics::GetPlayerPawn(this, 0));
+	// 初期位置
+	FVector StartLocation = FVector(0, 100, 0);
+
 	switch (State)
 	{
-	case EEnemyState::Idle:
-		
+	case EEnemyState::Idle:		// 待機
+		MyAIController->StopMovement();
 		break;
-	case EEnemyState::Hunt:
-
+	case EEnemyState::Hunt:		// 探索
+		MyAIController->MoveToActor(MyCharacter);
 		break;
-	case EEnemyState::RunAway:
-
+	case EEnemyState::RunAway:	// 逃げる
+		UAIBlueprintHelperLibrary::SimpleMoveToLocation(MyAIController, StartLocation);
 		break;
 
 	}
